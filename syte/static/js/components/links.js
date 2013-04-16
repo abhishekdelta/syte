@@ -1,6 +1,7 @@
 var $url;
 
 var allComponents = [
+  'blog',
   'instagram',
   'twitter',
   'github',
@@ -30,7 +31,10 @@ function setupLinks() {
       var url = $.url(this.href.replace('/#!', ''));
       $url = this.href;
 
-      if (this.id == 'blog-link' && window.location.pathname == '/') {
+      if (this.id == 'home-link') {
+        adjustSelection('force-home');
+      }
+      else if (this.id == 'blog-link' && window.location.pathname == '/') {
         adjustSelection('blog');
       }
       else if(this.id == 'instagram-link' && instagram_integration_enabled) {
@@ -78,6 +82,17 @@ function setupLinks() {
 function adjustSelection(component, callback) {
   var transition,
       $currProfileEl;
+
+  if (component == 'force-home') {
+    component = 'home';
+    blog_rendered = false;
+    $('#blog-posts').empty();
+  }
+
+
+  if (component == 'home' && blog_rendered == true) {
+    component = 'blog';
+  }
 
   if (currSelection !== 'home') {
     $currProfileEl = $('#' + currSelection + '-profile');

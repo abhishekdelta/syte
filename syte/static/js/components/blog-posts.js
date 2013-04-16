@@ -4,6 +4,9 @@
  * Takes the response from the blog platform and renders it using
  * our Handlebars template.
  */
+
+var blog_rendered = false;
+
 function renderBlogPosts(posts) {
   if (posts.length === 0) {
       reachedEnd = true;
@@ -66,6 +69,7 @@ function renderBlogPosts(posts) {
         setTimeout(setupBlogHeaderScroll, 1000);
         adjustSelection('blog');
 
+        blog_rendered = true;
         $('body').trigger("blog-post-loaded");
      });
 }
@@ -91,6 +95,9 @@ function fetchWordpressBlogPosts(offset, tag) {
     wpApiUrl += '&tag=' + tag.replace(/\s/g, '-');
   }
 
+  var spinner = new Spinner(spin_opts).spin();
+  $('#blog-link').append(spinner.el);
+
   $.getJSON(wpApiUrl, function(data) {
     // Get the data into a similar format as Tumblr so we can reuse the template
     $.each(data.posts, function(i, p) {
@@ -115,6 +122,8 @@ function fetchWordpressBlogPosts(offset, tag) {
         }
     });
     renderBlogPosts(data.posts);
+    
+    spinner.stop();    
   });
 }
 
