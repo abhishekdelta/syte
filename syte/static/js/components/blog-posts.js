@@ -36,7 +36,6 @@ function renderBlogPosts(posts) {
             audio_template = Handlebars.compile(audio_post_template),
             quote_template = Handlebars.compile(quote_post_template);
 
-        $('.loading').remove();
         $.each(posts, function(i, p) {
             p.formated_date = moment.utc(p.date, 'YYYY-MM-DD HH:mm:ss').local().format('MMMM DD, YYYY')
 
@@ -121,6 +120,7 @@ function fetchWordpressBlogPosts(offset, tag) {
           p.date = p.date.substring(0, p.date.indexOf('-'));
         }
     });
+    $('#home-content').hide();
     renderBlogPosts(data.posts);
     
     spinner.stop();    

@@ -87,8 +87,8 @@ function adjustSelection(component, callback) {
     component = 'home';
     blog_rendered = false;
     $('#blog-posts').empty();
+    $('#home-content').show();
   }
-
 
   if (component == 'home' && blog_rendered == true) {
     component = 'blog';
