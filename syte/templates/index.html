@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block main_section %}
 <section class="main-section blog-section" id="blog-posts">
-  <span class="loading">loading blog posts ...</span>
+  <span class="loading">Welcome!</span>
 </section>
 {% endblock %}
 {% block extra_inline_js %}
@@ -15,6 +15,9 @@ var postOffset = 0;
 
 $(function() {
   setupLinks();
+});
+
+$('#blog-link').click(function(){
   fetchBlogPosts(postOffset, "{{tag_slug}}", "{{ blog_platform }}");
 
   {% if DISQUS_INTEGRATION_ENABLED %}

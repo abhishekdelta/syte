@@ -64,7 +64,7 @@ function renderBlogPosts(posts) {
         adjustBlogHeaders();
         prettyPrint();
         setTimeout(setupBlogHeaderScroll, 1000);
-        adjustSelection('home');
+        adjustSelection('blog');
 
         $('body').trigger("blog-post-loaded");
      });

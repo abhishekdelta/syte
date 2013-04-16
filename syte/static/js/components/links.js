@@ -30,8 +30,8 @@ function setupLinks() {
       var url = $.url(this.href.replace('/#!', ''));
       $url = this.href;
 
-      if (this.id == 'home-link' && window.location.pathname == '/') {
-        adjustSelection('home');
+      if (this.id == 'blog-link' && window.location.pathname == '/') {
+        adjustSelection('blog');
       }
       else if(this.id == 'instagram-link' && instagram_integration_enabled) {
         adjustSelection('instagram', setupInstagram.bind(this, this));
@@ -99,7 +99,7 @@ function adjustSelection(component, callback) {
   $('.main-nav').children('li').removeClass('sel');
   $('#' + component + '-link').parent().addClass('sel');
 
-  if (component == 'home')
+  if (component == 'blog')
     $url = null;
 
   currSelection = component;
